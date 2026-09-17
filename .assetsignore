@@ -1,0 +1,9 @@
+# Controls what actually gets uploaded as a public static asset by
+# `wrangler deploy`/`wrangler versions upload` — separate from .gitignore.
+# Without this, wrangler uploads *everything* under the assets directory,
+# .git included, publicly exposing the whole commit history at the live
+# URL (this bit an earlier LB Dev project on its first deploy).
+.git
+.github
+.wrangler
+node_modules

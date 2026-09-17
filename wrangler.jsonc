@@ -1,0 +1,14 @@
+{
+  // The name of the Cloudflare Worker this deploys to. This MUST match the
+  // Worker name you created/connected in the Cloudflare dashboard for this
+  // git integration — if it doesn't, change this to match (Settings on the
+  // Worker in the dashboard shows its real name).
+  "name": "lb-dev-homepage",
+  "compatibility_date": "2026-09-17",
+
+  // Pure static site right now (no server-side secrets/proxies needed), so
+  // this is assets-only: no "main" entry point, just a directory to serve.
+  "assets": {
+    "directory": "."
+  }
+}
