@@ -3,56 +3,71 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>LB Development</title>
+<title>LB Dev — lbdev.app</title>
+<meta name="description" content="LB Dev — Liam Burnett's personal lab and project showcase. Web apps, tools, client work and robotics builds, shipped from Brisbane, Australia."/>
+<meta name="theme-color" content="#07060d"/>
+<meta property="og:title" content="LB Dev — lbdev.app"/>
+<meta property="og:description" content="A personal lab for web apps, tools, games, and client work. Now living at lbdev.app."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://lbdev.app"/>
+<meta name="twitter:card" content="summary"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2328265c'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='700' fill='%23ffffff' text-anchor='middle'%3ELB%3C/text%3E%3C/svg%3E"/>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#080d14;--bg2:#0d1520;--bg3:#111c2a;
-  --blue:#2a7fd4;--green:#00ff88;--green-dim:rgba(0,255,136,0.12);
-  --text:#c8d8e8;--muted:#4a6a8a;--border:rgba(42,127,212,0.2);
+  --bg:#07060d;--bg2:#0f0e21;--bg3:#171634;
+  --primary:#28265c;--secondary:#3d5c93;--accent:#82a6e8;--accent-dim:rgba(130,166,232,0.12);
+  --text:#eef0fa;--muted:#8a8db3;--border:rgba(61,92,147,0.28);
   --mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;
 }
 html,body{height:100%;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999;}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(8,13,20,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px);}
+a{color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(7,6,13,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px);}
 .nav-left{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;}
-.nav-prompt{color:var(--green);}.nav-name{color:#fff;font-weight:700;}
-.nav-cursor{display:inline-block;width:8px;height:14px;background:var(--green);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px;}
+.nav-prompt{color:var(--accent);}.nav-name{color:#fff;font-weight:700;}
+.nav-cursor{display:inline-block;width:8px;height:14px;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 .nav-links{display:flex;gap:4px;}
 .nav-link{background:none;border:none;color:var(--muted);font-family:var(--mono);font-size:12px;padding:6px 14px;cursor:pointer;border-radius:4px;transition:all 0.15s;}
-.nav-link:hover,.nav-link.active{color:var(--green);background:var(--green-dim);}
+.nav-link:hover,.nav-link.active{color:var(--accent);background:var(--accent-dim);}
 .nav-link.active::before{content:'> ';}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
 .hamburger span{display:block;width:22px;height:2px;background:var(--muted);border-radius:2px;transition:all 0.2s;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-nav{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(8,13,20,0.99);border-bottom:1px solid var(--border);z-index:199;flex-direction:column;padding:12px 16px;}
+.mobile-nav{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(7,6,13,0.99);border-bottom:1px solid var(--border);z-index:199;flex-direction:column;padding:12px 16px;}
 .mobile-nav.open{display:flex;}
 .mobile-nav-link{background:none;border:none;color:var(--muted);font-family:var(--mono);font-size:14px;padding:14px 12px;cursor:pointer;text-align:left;border-bottom:1px solid var(--border);transition:color 0.15s;}
 .mobile-nav-link:last-child{border-bottom:none;}
-.mobile-nav-link:hover,.mobile-nav-link.active{color:var(--green);}
+.mobile-nav-link:hover,.mobile-nav-link.active{color:var(--accent);}
 .page{display:none;padding-top:56px;min-height:calc(100vh - 56px);}
 .page.active{display:block;}
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 56px);align-items:center;padding:0 48px;gap:48px;position:relative;overflow:hidden;}
-.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:0.25;pointer-events:none;}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:0.22;pointer-events:none;}
+.hero-glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:0.35;}
+.hero-glow.g1{width:420px;height:420px;background:var(--primary);top:-120px;left:-80px;animation:drift1 16s ease-in-out infinite;}
+.hero-glow.g2{width:380px;height:380px;background:var(--secondary);bottom:-140px;right:-60px;animation:drift2 18s ease-in-out infinite;}
+@keyframes drift1{0%,100%{transform:translate(0,0);}50%{transform:translate(40px,30px);}}
+@keyframes drift2{0%,100%{transform:translate(0,0);}50%{transform:translate(-30px,-40px);}}
 .hero-left{position:relative;z-index:1;}
-.hero-eyebrow{font-family:var(--mono);font-size:12px;color:var(--green);letter-spacing:2px;margin-bottom:24px;}
+.hero-eyebrow{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:2px;margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .hero-eyebrow span{color:var(--muted);}
+.domain-badge{font-family:var(--mono);font-size:11px;color:var(--text);background:var(--accent-dim);border:1px solid rgba(130,166,232,0.35);padding:3px 10px;border-radius:20px;letter-spacing:0.5px;}
 .hero h1{font-family:var(--mono);font-size:clamp(32px,4.5vw,62px);font-weight:700;color:#fff;line-height:1.08;margin-bottom:20px;letter-spacing:-1px;}
-.hero h1 em{color:var(--blue);font-style:normal;}
+.hero h1 em{color:var(--accent);font-style:normal;}
 .hero-desc{font-size:17px;color:var(--muted);line-height:1.8;margin-bottom:40px;font-weight:300;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;}
-.btn-green{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,255,136,0.3);padding:11px 26px;border-radius:6px;font-family:var(--mono);font-size:13px;cursor:pointer;transition:all 0.15s;}
-.btn-green:hover{background:rgba(0,255,136,0.2);}
+.btn-accent{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(130,166,232,0.35);padding:11px 26px;border-radius:6px;font-family:var(--mono);font-size:13px;cursor:pointer;transition:all 0.15s;}
+.btn-accent:hover{background:rgba(130,166,232,0.22);}
 .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);padding:11px 26px;border-radius:6px;font-family:var(--mono);font-size:13px;cursor:pointer;transition:all 0.15s;}
-.btn-ghost:hover{color:var(--text);border-color:rgba(42,127,212,0.5);}
+.btn-ghost:hover{color:var(--text);border-color:rgba(61,92,147,0.6);}
 .hero-stats{display:flex;gap:36px;}
 .hero-stat-num{font-family:var(--mono);font-size:28px;font-weight:700;color:#fff;}
-.hero-stat-num span{color:var(--green);}
+.hero-stat-num span{color:var(--accent);}
 .hero-stat-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:2px;}
 .hero-right{position:relative;z-index:1;}
 .terminal{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
@@ -61,77 +76,77 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;display:flex;ali
 .dot.r{background:#ff5f57;}.dot.y{background:#febc2e;}.dot.g{background:#28c840;}
 .terminal-title{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:8px;}
 .terminal-body{padding:24px;font-family:var(--mono);font-size:13px;line-height:2.1;}
-.t-comment{color:var(--muted);}.t-key{color:#7dd3fc;}.t-val{color:var(--green);}.t-str{color:#f9a8d4;}.t-num{color:#fb923c;}
+.t-comment{color:var(--muted);}.t-key{color:#7dd3fc;}.t-val{color:var(--accent);}.t-str{color:#c9b8f5;}.t-num{color:#fb923c;}
 .typing-line{display:flex;align-items:center;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
-.typing-prompt{color:var(--green);font-family:var(--mono);font-size:13px;}
+.typing-prompt{color:var(--accent);font-family:var(--mono);font-size:13px;}
 #typingText{color:#fff;font-family:var(--mono);font-size:13px;}
-.typing-caret{display:inline-block;width:8px;height:14px;background:var(--green);vertical-align:middle;animation:blink 0.8s step-end infinite;}
+.typing-caret{display:inline-block;width:8px;height:14px;background:var(--accent);vertical-align:middle;animation:blink 0.8s step-end infinite;}
 .section{padding:80px 48px;max-width:100%;}
 .section-header{display:flex;align-items:baseline;gap:16px;margin-bottom:48px;border-bottom:1px solid var(--border);padding-bottom:20px;flex-wrap:wrap;}
-.section-num{font-family:var(--mono);font-size:12px;color:var(--green);}
+.section-num{font-family:var(--mono);font-size:12px;color:var(--accent);}
 .section-title{font-family:var(--mono);font-size:22px;font-weight:700;color:#fff;}
 .section-count{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto;}
 .filter-tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
 .filter-tab{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:12px;padding:6px 16px;border-radius:4px;cursor:pointer;transition:all 0.15s;}
-.filter-tab:hover,.filter-tab.active{background:var(--green-dim);color:var(--green);border-color:rgba(0,255,136,0.3);}
+.filter-tab:hover,.filter-tab.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(130,166,232,0.35);}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
 .project-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:24px;cursor:pointer;transition:all 0.15s;position:relative;overflow:hidden;}
-.project-card::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--green);opacity:0;transition:opacity 0.15s;}
-.project-card:hover{border-color:rgba(0,255,136,0.25);transform:translateX(4px);}
+.project-card::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity 0.15s;}
+.project-card:hover{border-color:rgba(130,166,232,0.3);transform:translateX(4px);}
 .project-card:hover::after{opacity:1;}
-.project-card.accent-blue::after{background:var(--blue);}
-.project-card.accent-blue:hover{border-color:rgba(42,127,212,0.4);}
+.project-card.accent-blue::after{background:var(--secondary);}
+.project-card.accent-blue:hover{border-color:rgba(61,92,147,0.5);}
 .project-card.accent-purple::after{background:#a78bfa;}
 .project-type{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-.project-type-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
-.project-type-dot.blue{background:var(--blue);}.project-type-dot.purple{background:#a78bfa;}
+.project-type-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);}
+.project-type-dot.blue{background:var(--secondary);}.project-type-dot.purple{background:#a78bfa;}
 .project-card h3{font-family:var(--mono);font-size:16px;font-weight:700;color:#fff;margin-bottom:10px;}
 .project-card p{font-size:14px;color:var(--muted);line-height:1.7;}
 .project-tags{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
 .ptag{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--bg3);border:1px solid var(--border);padding:3px 10px;border-radius:3px;}
 .project-status{font-family:var(--mono);font-size:11px;margin-top:16px;}
-.status-live{color:var(--green);}.status-wip{color:#febc2e;}.status-client{color:#7dd3fc;}.status-tool{color:#a78bfa;}
+.status-live{color:var(--accent);}.status-wip{color:#f5c451;}.status-client{color:#7dd3fc;}.status-tool{color:#a78bfa;}
 .skeleton{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:24px;animation:pulse 1.5s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
 .skel-line{height:10px;background:var(--bg3);border-radius:3px;margin-bottom:10px;}
 .skel-line.short{width:40%;}.skel-line.med{width:70%;}
 .stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:8px;}
 .stack-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px 16px;text-align:center;transition:all 0.15s;}
-.stack-item:hover{border-color:var(--blue);transform:translateY(-2px);}
+.stack-item:hover{border-color:var(--secondary);transform:translateY(-2px);}
 .stack-icon{font-size:28px;margin-bottom:10px;}
 .stack-name{font-family:var(--mono);font-size:12px;color:var(--text);font-weight:500;}
 .stack-level{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:4px;}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
 .about-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:28px;margin-bottom:16px;}
 .about-block:last-child{margin-bottom:0;}
-.about-block h3{font-family:var(--mono);font-size:14px;color:var(--green);margin-bottom:16px;}
+.about-block h3{font-family:var(--mono);font-size:14px;color:var(--accent);margin-bottom:16px;}
 .about-block p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:12px;}
 .skill-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
 .skill-label{font-family:var(--mono);font-size:12px;color:var(--text);width:120px;flex-shrink:0;}
 .skill-bar-bg{flex:1;height:4px;background:var(--bg3);border-radius:2px;}
-.skill-bar{height:4px;border-radius:2px;background:var(--blue);transition:width 1s ease;}
-.skill-bar.green{background:var(--green);}
+.skill-bar{height:4px;border-radius:2px;background:var(--secondary);transition:width 1s ease;}
+.skill-bar.accent{background:var(--accent);}
 .skill-pct{font-family:var(--mono);font-size:11px;color:var(--muted);width:36px;text-align:right;}
 .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
 .contact-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:28px;}
-.contact-block h3{font-family:var(--mono);font-size:14px;color:var(--green);margin-bottom:20px;}
+.contact-block h3{font-family:var(--mono);font-size:14px;color:var(--accent);margin-bottom:20px;}
 .contact-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;font-family:var(--mono);font-size:13px;}
 .contact-row-label{color:var(--muted);width:80px;flex-shrink:0;}
 .contact-row-val{color:var(--text);word-break:break-all;}
 .form-group{margin-bottom:16px;}
 .form-group label{display:block;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:8px;}
 .form-group input,.form-group textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 14px;color:var(--text);font-family:var(--mono);font-size:13px;outline:none;transition:border-color 0.15s;}
-.form-group input:focus,.form-group textarea:focus{border-color:rgba(0,255,136,0.4);}
+.form-group input:focus,.form-group textarea:focus{border-color:rgba(130,166,232,0.5);}
 .form-group textarea{height:100px;resize:vertical;}
-.form-submit{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,255,136,0.3);padding:10px 24px;border-radius:6px;font-family:var(--mono);font-size:13px;cursor:pointer;width:100%;transition:all 0.15s;margin-top:4px;}
-.form-submit:hover{background:rgba(0,255,136,0.2);}
+.form-submit{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(130,166,232,0.35);padding:10px 24px;border-radius:6px;font-family:var(--mono);font-size:13px;cursor:pointer;width:100%;transition:all 0.15s;margin-top:4px;}
+.form-submit:hover{background:rgba(130,166,232,0.22);}
 .form-submit:disabled{opacity:0.5;cursor:not-allowed;}
 .form-msg{font-family:var(--mono);font-size:12px;margin-top:12px;padding:10px 14px;border-radius:6px;display:none;}
-.form-msg.success{display:block;color:var(--green);background:var(--green-dim);border:1px solid rgba(0,255,136,0.3);}
+.form-msg.success{display:block;color:var(--accent);background:var(--accent-dim);border:1px solid rgba(130,166,232,0.35);}
 .form-msg.error{display:block;color:#ff6b6b;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.3);}
 footer{border-top:1px solid var(--border);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
 footer span{font-family:var(--mono);font-size:12px;color:var(--muted);}
-footer .f-right{color:var(--green);}
+footer .f-right{color:var(--accent);}
 @media(max-width:960px){
   .hero{grid-template-columns:1fr;min-height:auto;padding:60px 32px;}
   .hero-right{display:none;}
@@ -148,7 +163,7 @@ footer .f-right{color:var(--green);}
   .hero h1{font-size:clamp(26px,8vw,38px);}
   .hero-desc{font-size:15px;}
   .hero-btns{flex-direction:column;}
-  .btn-green,.btn-ghost{width:100%;text-align:center;}
+  .btn-accent,.btn-ghost{width:100%;text-align:center;}
   .hero-stats{gap:20px;flex-wrap:wrap;}
   .section{padding:40px 20px;}
   .projects-grid{grid-template-columns:1fr;}
@@ -158,6 +173,10 @@ footer .f-right{color:var(--green);}
   .project-card:hover{transform:none;}
   footer{flex-direction:column;text-align:center;padding:20px;}
 }
+@media(prefers-reduced-motion:reduce){
+  .hero-glow{animation:none;}
+  .nav-cursor,.typing-caret{animation:none;}
+}
 </style>
 </head>
 <body>
@@ -165,7 +184,7 @@ footer .f-right{color:var(--green);}
 <nav>
   <div class="nav-left">
     <span class="nav-prompt">~/</span>
-    <span class="nav-name">lb-dev</span>
+    <span class="nav-name">lbdev.app</span>
     <span class="nav-cursor"></span>
   </div>
   <div class="nav-links">
@@ -189,13 +208,15 @@ footer .f-right{color:var(--green);}
 <!-- HOME -->
 <div class="page active" id="page-home">
   <div class="hero">
+    <div class="hero-glow g1"></div>
+    <div class="hero-glow g2"></div>
     <div class="hero-bg-grid"></div>
     <div class="hero-left">
-      <div class="hero-eyebrow">// <span>welcome to lb development</span></div>
+      <div class="hero-eyebrow">// <span>welcome to lb development</span> <span class="domain-badge">now at lbdev.app</span></div>
       <h1>I build <em>random stuff</em><br/>and ship it.</h1>
-      <p class="hero-desc">A personal lab for web apps, tools, games, design work, and whatever else I feel like making. Some of it's for clients. Most of it's for fun.</p>
+      <p class="hero-desc">A personal lab for web apps, tools, games, design work, and whatever else I feel like making. Some of it's for clients. Most of it's for fun. New domain, same builds.</p>
       <div class="hero-btns">
-        <button class="btn-green" onclick="showPage('projects',null)">$ view projects</button>
+        <button class="btn-accent" onclick="showPage('projects',null)">$ view projects</button>
         <button class="btn-ghost" onclick="showPage('contact',null)">get in touch</button>
       </div>
       <div class="hero-stats">
@@ -208,7 +229,7 @@ footer .f-right{color:var(--green);}
       <div class="terminal">
         <div class="terminal-bar">
           <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-          <span class="terminal-title">lb-dev — info.json</span>
+          <span class="terminal-title">lbdev.app — info.json</span>
         </div>
         <div class="terminal-body">
           <span class="t-comment">// who's behind this?</span><br/>
@@ -216,6 +237,7 @@ footer .f-right{color:var(--green);}
           &nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-str">"Liam B."</span>,<br/>
           &nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-str">"developer / builder / tinkerer"</span>,<br/>
           &nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-str">"Brisbane, QLD 🇦🇺"</span>,<br/>
+          &nbsp;&nbsp;<span class="t-key">"domain"</span>: <span class="t-str">"lbdev.app"</span>,<br/>
           &nbsp;&nbsp;<span class="t-key">"building"</span>: <span class="t-val">true</span>,<br/>
           &nbsp;&nbsp;<span class="t-key">"open_to_work"</span>: <span class="t-val">true</span>,<br/>
           &nbsp;&nbsp;<span class="t-key">"projects"</span>: <span class="t-num" id="termProjectCount">...</span>,<br/>
@@ -273,10 +295,10 @@ footer .f-right{color:var(--green);}
       <div>
         <div class="about-block">
           <h3>// skills.json</h3>
-          <div class="skill-row"><span class="skill-label">HTML / CSS</span><div class="skill-bar-bg"><div class="skill-bar green" style="width:85%"></div></div><span class="skill-pct">85%</span></div>
+          <div class="skill-row"><span class="skill-label">HTML / CSS</span><div class="skill-bar-bg"><div class="skill-bar accent" style="width:85%"></div></div><span class="skill-pct">85%</span></div>
           <div class="skill-row"><span class="skill-label">JavaScript</span><div class="skill-bar-bg"><div class="skill-bar" style="width:70%"></div></div><span class="skill-pct">70%</span></div>
           <div class="skill-row"><span class="skill-label">Python</span><div class="skill-bar-bg"><div class="skill-bar" style="width:65%"></div></div><span class="skill-pct">65%</span></div>
-          <div class="skill-row"><span class="skill-label">UI / Design</span><div class="skill-bar-bg"><div class="skill-bar green" style="width:75%"></div></div><span class="skill-pct">75%</span></div>
+          <div class="skill-row"><span class="skill-label">UI / Design</span><div class="skill-bar-bg"><div class="skill-bar accent" style="width:75%"></div></div><span class="skill-pct">75%</span></div>
           <div class="skill-row"><span class="skill-label">Robotics</span><div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div><span class="skill-pct">80%</span></div>
           <div class="skill-row"><span class="skill-label">Git / GitHub</span><div class="skill-bar-bg"><div class="skill-bar" style="width:72%"></div></div><span class="skill-pct">72%</span></div>
         </div>
@@ -306,12 +328,12 @@ footer .f-right{color:var(--green);}
     <div class="contact-wrap">
       <div class="contact-block">
         <h3>// reach out</h3>
-        <div class="contact-row"><span class="contact-row-label">email</span><span class="contact-row-val">help@lbdev.tech</span></div>
+        <div class="contact-row"><span class="contact-row-label">email</span><span class="contact-row-val">help@lbdev.app</span></div>
         <div class="contact-row"><span class="contact-row-label">location</span><span class="contact-row-val">Brisbane, QLD</span></div>
         <div class="contact-row"><span class="contact-row-label">github</span><span class="contact-row-val">github.com/Liam-burnett-AU</span></div>
         <div class="contact-row"><span class="contact-row-label">status</span><span class="contact-row-val status-live">● open to projects</span></div>
         <br/>
-        <p style="font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.9;">Got a project? Want to collab? Just want to say hi? Shoot me a message and I'll get back to you within 24 hours.</p>
+        <p style="font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.9;">Got a project? Want to collab? Just want to say hi? Shoot me a message below — it lands straight in Discord and my inbox, and I'll get back to you within 24 hours.</p>
       </div>
       <div class="contact-block">
         <h3>// send a message</h3>
@@ -327,8 +349,8 @@ footer .f-right{color:var(--green);}
 </div>
 
 <footer>
-  <span>// lb-development &nbsp;·&nbsp; engineered for tomorrow.</span>
-  <span class="f-right">© 2025 LB Dev</span>
+  <span>// lbdev.app &nbsp;·&nbsp; engineered for tomorrow.</span>
+  <span class="f-right">© 2026 LB Dev</span>
 </footer>
 
 <script>
@@ -336,7 +358,12 @@ footer .f-right{color:var(--green);}
    Local: uses ./manifest.json | Remote: uses GitHub raw content URL */
 const MANIFEST_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:')
   ? './manifest.json'
-  : 'https://raw.githubusercontent.com/Liam-burnett-AU/lbdev.tech/refs/heads/main/manifest.json';
+  : 'https://raw.githubusercontent.com/Liam-burnett-AU/LB-Dev-Homepage/refs/heads/main/manifest.json';
+
+/* Cloudflare Worker: LB-Dev-Help-Email-Discord-Webhook-API.
+   POST { name, email, subject, message } -> Discord forum thread + email copy. */
+const CONTACT_API_URL = 'https://worker.lbdev.app/api/LB-Dev-Help-Email-Discord-Webhook-API/';
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 let allItems = [];
 
@@ -360,7 +387,7 @@ async function loadManifest(){
       .map(t=>({
         id:t.id, name:t.name, description:t.description,
         type:'tool', tags:[t.category], status:'tool',
-        url:'https://tools.lbdev.tech', showOnMain:true,
+        url:'https://tools.lbdev.app', showOnMain:true,
       }));
 
     allItems = [...projects,...tools];
@@ -371,7 +398,7 @@ async function loadManifest(){
     renderProjects('all');
   } catch(err){
     document.getElementById('projectsGrid').innerHTML =
-      '<div style="grid-column:1/-1;font-family:var(--mono);font-size:12px;color:#ff6b6b;padding:24px 0;">// error: could not load projects ('+err.message+')</div>';
+      '<div style="grid-column:1/-1;font-family:var(--mono);font-size:12px;color:#ff6b6b;padding:24px 0;">// error: could not load projects ('+esc(err.message)+')</div>';
     document.getElementById('projectCount').textContent='// error';
   }
 }
@@ -406,7 +433,7 @@ function renderProjects(filter){
     const s=STATUS_MAP[p.status]||{label:'● '+p.status,cls:'status-live'};
     const dotCls=p.type==='web app'?'blue':p.type==='design'?'purple':'';
     const tags=(p.tags||[]).map(t=>'<span class="ptag">'+esc(t)+'</span>').join('');
-    const click=p.url?'onclick="window.open(\''+esc(p.url)+'\',\'_blank\')"':'';
+    const click=p.url?'onclick="openProject(\''+esc(p.url)+'\')"':'';
     return '<div class="project-card '+accent+'" '+click+'>'
       +'<div class="project-type"><div class="project-type-dot '+dotCls+'"></div>'+esc(p.type)+'</div>'
       +'<h3>'+esc(p.name)+'</h3><p>'+esc(p.description)+'</p>'
@@ -414,6 +441,10 @@ function renderProjects(filter){
       +'<div class="project-status '+s.cls+'">'+s.label+'</div>'
       +'</div>';
   }).join('');
+}
+
+function openProject(url){
+  window.open(url,'_blank','noopener,noreferrer');
 }
 
 function showPage(id,btn){
@@ -436,23 +467,32 @@ async function submitForm(){
   const message=document.getElementById('f-message').value.trim();
   const btn=document.getElementById('submitBtn');
   const msg=document.getElementById('formMsg');
+
   if(!name||!email||!message){msg.className='form-msg error';msg.textContent='// error: name, email and message are required.';return;}
+  if(!EMAIL_PATTERN.test(email)){msg.className='form-msg error';msg.textContent='// error: that email address doesn\'t look right.';return;}
+
   btn.disabled=true;btn.textContent='$ sending...';msg.className='form-msg';
-  const data=new FormData();
-  data.append('name',name);data.append('email',email);
-  data.append('subject',subject||'New message from lbdev.tech');data.append('message',message);
+
   try{
-    const res=await fetch('https://lbdev.tech/contact.php',{method:'POST',body:data});
-    const json=await res.json();
-    if(json.success){
+    const res=await fetch(CONTACT_API_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,email,subject,message}),
+    });
+    const json=await res.json().catch(()=>({}));
+    if(res.ok && json.ok){
       msg.className='form-msg success';msg.textContent="// message sent. i'll get back to you soon.";
       ['f-name','f-email','f-subject','f-message'].forEach(id=>document.getElementById(id).value='');
-    } else throw new Error('server error');
-  } catch(e){msg.className='form-msg error';msg.textContent='// error: something went wrong. try emailing help@lbdev.tech directly.';}
+    } else {
+      throw new Error(json.error||('server responded '+res.status));
+    }
+  } catch(e){
+    msg.className='form-msg error';msg.textContent='// error: '+esc(e.message)+'. try emailing help@lbdev.app directly.';
+  }
   btn.disabled=false;btn.textContent='$ send --message';
 }
 
-const phrases=['git push origin main','npm run build','python main.py','console.log("hello")','ssh lb-dev@server','./deploy.sh --prod'];
+const phrases=['git push origin main','npm run build','python main.py','console.log("hello")','wrangler deploy','./deploy.sh --prod'];
 let pi=0,ci=0,deleting=false;
 function type(){
   const el=document.getElementById('typingText');if(!el)return;

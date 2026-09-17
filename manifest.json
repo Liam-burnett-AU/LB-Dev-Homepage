@@ -17,7 +17,7 @@
       "icon": "💻",
       "type": "web app",
       "tags": ["HTML", "CSS", "JS"],
-      "url": "https://lbdev.tech",
+      "url": "https://lbdev.app",
       "status": "live"
     },
     {
@@ -27,7 +27,7 @@
       "icon": "🔧",
       "type": "tool",
       "tags": ["HTML", "CSS", "JS"],
-      "url": "https://tools.lbdev.tech",
+      "url": "https://tools.lbdev.app",
       "status": "live"
     }
   ]
