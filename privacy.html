@@ -117,7 +117,7 @@ footer a{color:var(--muted);margin:0 8px;}
       <tr><th>Product</th><th>What's collected</th></tr>
       <tr><td><strong>LB Dev site / LB Tools</strong></td><td>No accounts. If you use the contact form: name, email address, subject, and message.</td></tr>
       <tr><td><strong>Contact form / Discord webhook API</strong></td><td>Name, email, subject, message — from any product's contact form (LB Dev site, Pit Wall). Also handles inbound email sent to LB Development addresses.</td></tr>
-      <tr><td><strong>Login Panel</strong></td><td>Email, display name, hashed password (via Firebase Authentication — we never see or store your plaintext password), email-verification status, account role; on each login: IP address, browser/device user agent, and a coarse country/city derived from your IP (not GPS location); which other LB Development sites you've connected and what they can see; a full history of login attempts (success/fail) tied to your account.</td></tr>
+      <tr><td><strong>Login Panel</strong></td><td>Email, display name, hashed password (via Firebase Authentication — we never see or store your plaintext password), email-verification status, account role; on each login: IP address, browser/device user agent, and a coarse country/city derived from your IP (not GPS location) — this device info is kept for a maximum of 30 days, then deleted (see <a href="#retention">How long we keep it</a>); which other LB Development sites you've connected and what they can see; a history of login attempts (success/fail) tied to your account.</td></tr>
       <tr><td><strong>Pit Wall</strong></td><td>Email, display name, team number/name, role on the team; robot profile (drivetrain, mechanisms, autonomous routine); scouting notes on other teams; engineering-notebook entries and any photos/documents you upload; AI chat messages; pit-checklist state.</td></tr>
       <tr><td><strong>SFOS</strong> (in development)</td><td>Not yet built. This policy will be updated with specifics before it collects any real data — see <a href="#changes">Changes to this policy</a>.</td></tr>
     </table>
@@ -127,7 +127,7 @@ footer a{color:var(--muted);margin:0 8px;}
     <h2><span class="num">03</span>How we collect it</h2>
     <ul>
       <li><strong>Directly from you</strong> — anything you type into a registration form, profile field, scouting log, notebook entry, AI chat box, or contact form.</li>
-      <li><strong>Automatically</strong> — IP address, user agent, and coarse geo (country/city, via Cloudflare's network-level data) are recorded against every login attempt and active session, purely for account security (spotting logins from an unexpected location, letting you review/revoke your own active sessions).</li>
+      <li><strong>Automatically</strong> — IP address, user agent, and coarse geo (country/city, via Cloudflare's network-level data) are recorded against every Login Panel login attempt and active session, purely for account security (spotting logins from an unexpected location, letting you review/revoke your own active sessions), and kept for a maximum of 30 days before automatic deletion.</li>
       <li><strong>From third parties</strong> — if you sign in via Login Panel's OAuth flow, a connecting site receives only the profile/email fields you consent to on the consent screen; Cloudflare Turnstile provides a pass/fail bot-check signal (see <a href="#sharing">below</a>) rather than sending us personal data about you.</li>
     </ul>
   </section>
@@ -182,7 +182,8 @@ footer a{color:var(--muted);margin:0 8px;}
   <section id="retention">
     <h2><span class="num">10</span>How long we keep it</h2>
     <ul>
-      <li><strong>Login Panel account deletion</strong> removes your profile, active sessions, and connected-app grants from Firebase Authentication and Firestore. <strong>Your login-history (audit) records are kept even after account deletion</strong>, for security and audit purposes — this is a deliberate exception, not an oversight.</li>
+      <li><strong>Login Panel device info</strong> — the IP address, browser/device user agent, and coarse country/city recorded against your logins and sessions is kept for a <strong>maximum of 30 days</strong>, then automatically deleted.</li>
+      <li><strong>Login Panel account deletion</strong> removes your profile, active sessions, and connected-app grants from Firebase Authentication and Firestore. <strong>A record that a login happened (time, success/fail) is kept even after account deletion</strong>, for security and audit purposes, but the device info attached to it is still subject to the 30-day limit above.</li>
       <li><strong>Pit Wall account deletion</strong> removes your own login; your team's shared data (robot profile, scouting log, notebook, chat) stays for your remaining teammates, since it belongs to the team, not any one member.</li>
       <li><strong>Contact-form submissions</strong> persist in our Discord server and inbox like any message you send us, until we or you ask for them to be removed.</li>
     </ul>
