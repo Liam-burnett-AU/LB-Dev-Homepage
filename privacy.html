@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — LB Dev</title>
+<meta name="description" content="Privacy Policy for LB Development's products: the LB Dev site, LB Tools, Pit Wall, Login Panel, and the shared contact/webhook API."/>
+<meta name="theme-color" content="#07060d"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2328265c'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='700' fill='%23ffffff' text-anchor='middle'%3ELB%3C/text%3E%3C/svg%3E"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#07060d;--bg2:#0f0e21;--bg3:#171634;
+  --primary:#28265c;--secondary:#3d5c93;--accent:#82a6e8;--accent-dim:rgba(130,166,232,0.12);
+  --text:#eef0fa;--muted:#8a8db3;--border:rgba(61,92,147,0.28);
+  --mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.7;}
+a{color:var(--accent);}
+nav{position:sticky;top:0;z-index:100;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(7,6,13,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px);}
+.nav-left{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;}
+.nav-prompt{color:var(--accent);}.nav-name{color:#fff;font-weight:700;text-decoration:none;}
+.nav-back{font-family:var(--mono);font-size:12px;color:var(--muted);text-decoration:none;padding:6px 14px;border:1px solid var(--border);border-radius:4px;transition:all .15s;}
+.nav-back:hover{color:var(--accent);border-color:rgba(130,166,232,0.35);}
+.wrap{max-width:820px;margin:0 auto;padding:56px 24px 100px;}
+.doc-header{margin-bottom:40px;border-bottom:1px solid var(--border);padding-bottom:28px;}
+.doc-eyebrow{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:1.5px;margin-bottom:12px;}
+h1{font-family:var(--mono);font-size:clamp(28px,4vw,40px);color:#fff;font-weight:700;letter-spacing:-0.5px;margin-bottom:10px;}
+.doc-meta{font-family:var(--mono);font-size:12px;color:var(--muted);}
+.scope-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-top:24px;font-size:14px;color:var(--muted);}
+.scope-box strong{color:var(--text);}
+.toc{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-bottom:44px;}
+.toc h2{font-family:var(--mono);font-size:13px;color:var(--accent);margin-bottom:12px;}
+.toc ol{list-style:none;counter-reset:toc;display:grid;gap:6px;}
+.toc li{counter-increment:toc;font-size:13px;}
+.toc li a{text-decoration:none;color:var(--muted);}
+.toc li a:hover{color:var(--accent);}
+.toc li::before{content:counter(toc,decimal-leading-zero)"  ";font-family:var(--mono);color:var(--secondary);}
+section{margin-bottom:44px;scroll-margin-top:72px;}
+h2{font-family:var(--mono);font-size:19px;color:#fff;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+h2 .num{color:var(--accent);margin-right:10px;}
+h3{font-family:var(--sans);font-size:15px;color:var(--accent);margin:18px 0 8px;font-weight:600;}
+p{color:var(--text);margin-bottom:14px;font-size:15px;}
+ul{margin:0 0 14px 22px;}
+li{margin-bottom:8px;font-size:15px;}
+.muted{color:var(--muted);}
+.callout{background:var(--accent-dim);border:1px solid rgba(130,166,232,0.3);border-radius:8px;padding:16px 20px;margin:16px 0;font-size:14px;}
+.callout strong{color:var(--accent);}
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:13.5px;}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+th{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--secondary);background:rgba(61,92,147,0.15);border:1px solid var(--border);padding:2px 8px;border-radius:20px;margin-right:4px;}
+footer{border-top:1px solid var(--border);padding:28px 48px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted);}
+footer a{color:var(--muted);margin:0 8px;}
+@media(max-width:640px){
+  nav{padding:0 20px;}
+  .wrap{padding:40px 18px 80px;}
+  table,thead,tbody,th,td,tr{display:block;}
+  th{border-bottom:none;padding-bottom:0;}
+  td{border-bottom:none;padding:2px 0 10px;}
+  tr{border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:10px;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-left"><span class="nav-prompt">~/</span><a class="nav-name" href="index.html">lbdev.app</a></div>
+  <a class="nav-back" href="index.html">&larr; back home</a>
+</nav>
+
+<div class="wrap">
+  <div class="doc-header">
+    <div class="doc-eyebrow">// legal</div>
+    <h1>Privacy Policy</h1>
+    <div class="doc-meta">Last updated 17 September 2026 &middot; Applies to all LB Development products listed below</div>
+    <div class="scope-box">
+      <strong>Who this is about:</strong> LB Development is operated by Liam Burnett, an individual based in Brisbane, Queensland, Australia.
+      <br/><br/>
+      <strong>What this covers:</strong> the LB Dev homepage (<strong>lbdev.app</strong>), LB Tools (<strong>tools.lbdev.app</strong>), <strong>Pit Wall</strong>, <strong>Login Panel</strong> ("Sign in with LB Development" and any site that uses it), the shared contact-form/Discord webhook API, and future LB Development products including an in-development Scouts-focused tool (working name <strong>SFOS</strong>).
+      <br/><br/>
+      <strong>What this doesn't cover:</strong> client sites built for someone else's business (e.g. Steady Path Support) — those have their own, separate privacy policy.
+    </div>
+  </div>
+
+  <div class="toc">
+    <h2>// contents</h2>
+    <ol>
+      <li><a href="#approach">Our approach</a></li>
+      <li><a href="#what-we-collect">What we collect</a></li>
+      <li><a href="#how-collected">How we collect it</a></li>
+      <li><a href="#why">Why we use it</a></li>
+      <li><a href="#cookies">Cookies and similar technology</a></li>
+      <li><a href="#sharing">Who we share it with</a></li>
+      <li><a href="#overseas">Overseas disclosure</a></li>
+      <li><a href="#ai-processing">AI processing</a></li>
+      <li><a href="#children">Children and young people</a></li>
+      <li><a href="#retention">How long we keep it</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#complaints">Complaints</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <section id="approach">
+    <h2><span class="num">01</span>Our approach</h2>
+    <p>These are personal and hobby/school-assessment projects, not a registered business — as an individual operator we may not be strictly required to comply with the Privacy Act 1988 (Cth) the way a large organisation is. We've chosen to handle your information in line with the Australian Privacy Principles (APPs) anyway, because it's the right way to run anything that touches real people's data, including students, robotics teams, and Scout troops.</p>
+    <p>The short version: we collect the minimum needed to run each feature, we don't sell your data, we don't run ads or third-party trackers, and we tell you here exactly which third parties we do share data with and why.</p>
+  </section>
+
+  <section id="what-we-collect">
+    <h2><span class="num">02</span>What we collect</h2>
+    <table>
+      <tr><th>Product</th><th>What's collected</th></tr>
+      <tr><td><strong>LB Dev site / LB Tools</strong></td><td>No accounts. If you use the contact form: name, email address, subject, and message.</td></tr>
+      <tr><td><strong>Contact form / Discord webhook API</strong></td><td>Name, email, subject, message — from any product's contact form (LB Dev site, Pit Wall). Also handles inbound email sent to LB Development addresses.</td></tr>
+      <tr><td><strong>Login Panel</strong></td><td>Email, display name, hashed password (via Firebase Authentication — we never see or store your plaintext password), email-verification status, account role; on each login: IP address, browser/device user agent, and a coarse country/city derived from your IP (not GPS location); which other LB Development sites you've connected and what they can see; a full history of login attempts (success/fail) tied to your account.</td></tr>
+      <tr><td><strong>Pit Wall</strong></td><td>Email, display name, team number/name, role on the team; robot profile (drivetrain, mechanisms, autonomous routine); scouting notes on other teams; engineering-notebook entries and any photos/documents you upload; AI chat messages; pit-checklist state.</td></tr>
+      <tr><td><strong>SFOS</strong> (in development)</td><td>Not yet built. This policy will be updated with specifics before it collects any real data — see <a href="#changes">Changes to this policy</a>.</td></tr>
+    </table>
+  </section>
+
+  <section id="how-collected">
+    <h2><span class="num">03</span>How we collect it</h2>
+    <ul>
+      <li><strong>Directly from you</strong> — anything you type into a registration form, profile field, scouting log, notebook entry, AI chat box, or contact form.</li>
+      <li><strong>Automatically</strong> — IP address, user agent, and coarse geo (country/city, via Cloudflare's network-level data) are recorded against every login attempt and active session, purely for account security (spotting logins from an unexpected location, letting you review/revoke your own active sessions).</li>
+      <li><strong>From third parties</strong> — if you sign in via Login Panel's OAuth flow, a connecting site receives only the profile/email fields you consent to on the consent screen; Cloudflare Turnstile provides a pass/fail bot-check signal (see <a href="#sharing">below</a>) rather than sending us personal data about you.</li>
+    </ul>
+  </section>
+
+  <section id="why">
+    <h2><span class="num">04</span>Why we use it</h2>
+    <ul>
+      <li>to create and secure your account, and let you sign in across LB Development sites without a separate password everywhere;</li>
+      <li>to provide the actual features you're using — team collaboration, scouting, notebook feedback, AI chat, event lookups;</li>
+      <li>to detect and respond to suspicious logins or abuse (this is what the login-history and session records are for);</li>
+      <li>to respond to contact-form messages and support requests;</li>
+      <li>we do <strong>not</strong> use your information for advertising, and we do not sell it to anyone.</li>
+    </ul>
+  </section>
+
+  <section id="cookies">
+    <h2><span class="num">05</span>Cookies and similar technology</h2>
+    <p>Login Panel sets a single, essential session cookie (HttpOnly, Secure, scoped to LB Development domains) so you stay signed in — it isn't used for tracking or advertising, and it's deleted when you sign out or expires automatically. Cloudflare Turnstile may set its own cookies as part of verifying you're not a bot on login/registration/forgot-password pages. We don't run Google Analytics, ad pixels, or any other third-party tracking script on any LB Development site.</p>
+  </section>
+
+  <section id="sharing">
+    <h2><span class="num">06</span>Who we share it with</h2>
+    <p>We use these third-party services to actually run the Services. Each only receives what it needs to do its job:</p>
+    <table>
+      <tr><th>Service</th><th>What it gets</th><th>Why</th></tr>
+      <tr><td>Firebase / Google Cloud</td><td>Account credentials, profile data, all Firestore-stored content</td><td>Authentication and database hosting</td></tr>
+      <tr><td>Cloudflare (Workers, KV, Turnstile, Email Routing)</td><td>Request metadata (IP, user agent), bot-check tokens, session data, routed email</td><td>Hosting, bot protection, email handling</td></tr>
+      <tr><td>Cloudinary</td><td>Uploaded photos/documents (notebook pages, final write-ups)</td><td>File storage for Pit Wall's engineering notebook</td></tr>
+      <tr><td>Groq</td><td>AI chat messages, and robot profile/scouting/notebook content used as context</td><td>Generating AI chat responses and feedback</td></tr>
+      <tr><td>Discord</td><td>Contact-form submissions (name, email, subject, message) and inbound-email content</td><td>Posting these as a forum thread so we see and can respond to them — visible only within our own Discord server, not publicly</td></tr>
+      <tr><td>FIRST FTC Events API / FTCScout</td><td>Team/event lookups (no personal account data sent)</td><td>Pulling official match schedules, results, and public team statistics</td></tr>
+    </table>
+    <p>We don't share your data with anyone else, and we don't sell it. If you sign in via Login Panel's "Sign in with LB Development" to a connecting site, that site only receives what's listed on the consent screen you approve.</p>
+  </section>
+
+  <section id="overseas">
+    <h2><span class="num">07</span>Overseas disclosure</h2>
+    <p>Several of the services above (Firebase/Google Cloud, Cloudflare, Cloudinary, Groq, Discord) process data on servers located outside Australia, typically in the United States. By using the Services, you understand your information may be processed overseas, subject to that provider's own security and privacy practices, which you can review on their respective sites.</p>
+  </section>
+
+  <section id="ai-processing">
+    <h2><span class="num">08</span>AI processing</h2>
+    <p>Pit Wall's AI chat, engineering-notebook feedback, and event analysis send your input — plus relevant context from your own team's robot profile, scouting log, or notebook — to Groq's API to generate a response. This content is processed by a third party to produce that response; don't submit anything you wouldn't want handled that way. We don't use your data to train our own AI models.</p>
+  </section>
+
+  <section id="children">
+    <h2><span class="num">09</span>Children and young people</h2>
+    <p>Pit Wall (and, in future, SFOS) are commonly used by people under 18 as part of a school robotics team or Scout troop. We collect the same limited set of information described above regardless of age, and we don't knowingly collect more from a young person than the feature actually needs. We rely on the supervising school, team, or Scout group to obtain any parental/guardian consent appropriate to their own context — this app is a coordination and record-keeping tool, not a substitute for an organisation's child-safety or working-with-children processes.</p>
+    <p>If you're a parent or guardian and want to review or ask us to delete a young person's data, contact us at <a href="mailto:help@lbdev.app">help@lbdev.app</a> and we'll work with you directly.</p>
+  </section>
+
+  <section id="retention">
+    <h2><span class="num">10</span>How long we keep it</h2>
+    <ul>
+      <li><strong>Login Panel account deletion</strong> removes your profile, active sessions, and connected-app grants from Firebase Authentication and Firestore. <strong>Your login-history (audit) records are kept even after account deletion</strong>, for security and audit purposes — this is a deliberate exception, not an oversight.</li>
+      <li><strong>Pit Wall account deletion</strong> removes your own login; your team's shared data (robot profile, scouting log, notebook, chat) stays for your remaining teammates, since it belongs to the team, not any one member.</li>
+      <li><strong>Contact-form submissions</strong> persist in our Discord server and inbox like any message you send us, until we or you ask for them to be removed.</li>
+    </ul>
+  </section>
+
+  <section id="security">
+    <h2><span class="num">11</span>Security</h2>
+    <p>Passwords are handled entirely by Firebase Authentication using industry-standard hashing — we never see or store them in plain text. Firestore security rules restrict every team's/user's data to people who belong to it. All Services are served over HTTPS. Login/registration/password-reset are protected by Cloudflare Turnstile against automated abuse. That said, no online service is 100% secure, and we can't guarantee absolute security of information you transmit to us.</p>
+  </section>
+
+  <section id="rights">
+    <h2><span class="num">12</span>Your rights</h2>
+    <p>You can ask us, at any time, to:</p>
+    <ul>
+      <li><strong>access</strong> a copy of the personal information we hold about you;</li>
+      <li><strong>correct</strong> information that's wrong or out of date (most profile fields you can also edit yourself, in Settings);</li>
+      <li><strong>delete</strong> your account and associated data, subject to the retention exceptions in <a href="#retention">section 10</a> above and any team data that isn't solely yours.</li>
+    </ul>
+    <p>Reach us at <a href="mailto:help@lbdev.app">help@lbdev.app</a> to exercise any of these. We'll respond within a reasonable time.</p>
+  </section>
+
+  <section id="complaints">
+    <h2><span class="num">13</span>Complaints</h2>
+    <p>If you're unhappy with how we've handled your personal information, tell us first at <a href="mailto:help@lbdev.app">help@lbdev.app</a> so we can try to fix it. If you're not satisfied with our response, you can complain to the <a href="https://www.oaic.gov.au/" target="_blank" rel="noopener noreferrer">Office of the Australian Information Commissioner (OAIC)</a>.</p>
+  </section>
+
+  <section id="changes">
+    <h2><span class="num">14</span>Changes to this policy</h2>
+    <p>We'll update the "Last updated" date above whenever this changes, and we'll make a reasonable effort to flag material changes in-app or by email — in particular, when SFOS moves from development to a real launch, this policy will be updated with the specifics of what it actually collects before it processes any real user's data.</p>
+  </section>
+
+  <section id="contact">
+    <h2><span class="num">15</span>Contact</h2>
+    <p>Questions, requests, or complaints about your privacy: <a href="mailto:help@lbdev.app">help@lbdev.app</a>, or the contact form on <a href="index.html">lbdev.app</a>.</p>
+  </section>
+</div>
+
+<footer>
+  <a href="index.html">home</a>&middot;<a href="terms.html">terms of service</a>&middot;<a href="mailto:help@lbdev.app">help@lbdev.app</a>
+</footer>
+</body>
+</html>
